@@ -43,10 +43,10 @@ enum Modes
   MUSIC
 }; // Music box modes
 
-AudioGeneratorMP3 *mp3; // MP3 files player
-AudioFileSourceSD *sd; // Source files from external SD
-AudioFileSourceSPIFFS *spiffs; // Source files from internal SPIFFS system
-AudioOutputI2S *out; // Audio output using I2S and external DAC
+AudioGeneratorMP3 *mp3 = NULL; // MP3 files player
+AudioFileSourceSD *sd = NULL; // Source files from external SD
+AudioFileSourceSPIFFS *spiffs = NULL; // Source files from internal SPIFFS system
+AudioOutputI2S *out = NULL; // Audio output using I2S and external DAC
 
 TimerHandle_t sleepTimer;
 
@@ -69,10 +69,12 @@ Button modeButton = Button(MODE_BUTTON_PIN, true, true, DEBOUNCE_MS);
  * out: audio output.
  */ 
 void stopCurrentSound(AudioGeneratorMP3 *mp3, AudioFileSourceSD *sdFile, AudioOutputI2S *out)
-{
+{ 
   mp3->stop();
-  out->stop();
-  sdFile->close();
+  out->stop();  
+
+  delete sdFile;   
+  sdFile = NULL;  
 }
 
 /**
@@ -109,10 +111,12 @@ void processSoundButtons(AudioGeneratorMP3 *mp3, AudioFileSourceSD *sdFile, Audi
 
       itoa(i + 1, fileName + strlen(fileName), 10);
       strcat(fileName + strlen(fileName), FILE_EXTENSION);
-      Serial.print(fileName);
+    
+      // Load sound
+      sdFile = new AudioFileSourceSD();   
+      sdFile->open(fileName);     
 
-      sdFile->open(fileName);
-      mp3->begin(sdFile, out);
+      mp3->begin(sdFile, out);     
     }
   }
 }
@@ -175,18 +179,7 @@ void setup()
     return;
   }
 
-  audioLogger = &Serial;
-
-  // Sound sources
-  spiffs = new AudioFileSourceSPIFFS();
-  sd = new AudioFileSourceSD();
-
-  // Output
-  out = new AudioOutputI2S();
-  out->SetGain(OUTPUT_GAIN);
-
-  // Audio generator
-  mp3 = new AudioGeneratorMP3();
+  audioLogger = &Serial;  
 
   // FreeRTOS task to create software timer
   sleepTimer = xTimerCreate(/* Just a text name, not used by the RTOS
@@ -242,6 +235,16 @@ void setup()
     return;
   }
 
+  // Init sound is loaded from SPIFFS
+  spiffs = new AudioFileSourceSPIFFS();
+  
+  // Output
+  out = new AudioOutputI2S();
+  out->SetGain(OUTPUT_GAIN);
+
+  // Audio generator
+  mp3 = new AudioGeneratorMP3();
+
   // Play init sound
   spiffs->open(INIT_SOUND);
   mp3->begin(spiffs, out);
@@ -255,7 +258,9 @@ void setup()
 
   mp3->stop();
   out->stop();
-  spiffs->close();
+  
+  delete spiffs; 
+  spiffs = NULL;
 }
 
 void loop()

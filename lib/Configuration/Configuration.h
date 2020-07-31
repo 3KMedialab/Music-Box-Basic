@@ -33,7 +33,7 @@ const char * FILE_EXTENSION = ".mp3";
  const uint8_t INVERT = false;
 
  //Debounce time for the buttons. A time of 20 milliseconds usually works well for tactile button switches.
- const uint8_t DEBOUNCE_MS = 30;
+ const uint8_t DEBOUNCE_MS = 20;
 
  /*************************************************
   * BUTTONS CONFIGURATION
