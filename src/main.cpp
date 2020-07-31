@@ -136,9 +136,11 @@ void processModeButton(AudioGeneratorMP3 *mp3, AudioFileSourceSD *sdFile, AudioO
     {
     case WORDS:
       mode = MUSIC;
+      out->SetGain(OUTPUT_GAIN_WORDS);
       break;
-    case MUSIC:
+    case MUSIC:    
       mode = WORDS;
+      out->SetGain(OUTPUT_GAIN_MUSIC);
     }
 
     if (mp3->isRunning())
@@ -240,7 +242,7 @@ void setup()
   
   // Output
   out = new AudioOutputI2S();
-  out->SetGain(OUTPUT_GAIN);
+  out->SetGain(OUTPUT_GAIN_WORDS);
 
   // Audio generator
   mp3 = new AudioGeneratorMP3();

@@ -1,8 +1,9 @@
 #ifndef Configuration_h
 #define Configuration_h
 
-// Default output gain
-const float OUTPUT_GAIN = 0.2;
+// Output gains
+const float OUTPUT_GAIN_WORDS = 0.4;
+const float OUTPUT_GAIN_MUSIC = 0.3;
 
 // Conversion factor for milli seconds to seconds
 const uint16_t mS_TO_S_FACTOR = 1000;
