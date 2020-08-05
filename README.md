@@ -98,11 +98,11 @@ There are several input configuration pins beyond the I2S interface itself that 
 
 Output from the DAC is then routed to the input of this [stereo amplifier board](https://es.aliexpress.com/item/32792986879.html?spm=a2g0s.9042311.0.0.274263c0m19beD) using a male/male minijack stereo audio wire.
 
-![Stereo amplifier board](/resources/stereo_amplifier.jpg)
+![Stereo amplifier board](/resources/stereo_amplifier.JPG)
 
 Output from the amp is then routed to this [speakers](https://es.aliexpress.com/item/33001758564.html?spm=a2g0s.9042311.0.0.274263c08rWGcV).
 
-![Stereo speakers](/resources/stereo_speakers.jpg)
+![Stereo speakers](/resources/stereo_speakers.JPG)
 
 ## Built With
 
