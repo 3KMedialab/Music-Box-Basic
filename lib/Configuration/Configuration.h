@@ -2,7 +2,7 @@
 #define Configuration_h
 
 // Output gains
-const float OUTPUT_GAIN_WORDS = 0.4;
+const float OUTPUT_GAIN_WORDS = 0.7;
 const float OUTPUT_GAIN_MUSIC = 0.3;
 
 // Conversion factor for milli seconds to seconds

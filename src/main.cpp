@@ -52,10 +52,6 @@ TimerHandle_t sleepTimer;
 
 uint8_t mode;
 
-// To run, set your ESP8266 build to 160MHz, and include a SPIFFS of 512KB or greater.
-// Use the "Tools->ESP8266/ESP32 Sketch Data Upload" menu to write the MP3 to SPIFFS
-// Then upload the sketch normally.
-
 // Sound buttons
 std::vector<Button> soundButtons = {{SOUND1_BUTTON_PIN, INTERNAL_PULL_UP, INVERT, DEBOUNCE_MS}, {SOUND2_BUTTON_PIN, INTERNAL_PULL_UP, INVERT, DEBOUNCE_MS}, {SOUND3_BUTTON_PIN, INTERNAL_PULL_UP, INVERT, DEBOUNCE_MS}, {SOUND4_BUTTON_PIN, INTERNAL_PULL_UP, INVERT, DEBOUNCE_MS}};
 
@@ -241,13 +237,13 @@ void setup()
   spiffs = new AudioFileSourceSPIFFS();
   
   // Output
-  out = new AudioOutputI2S();
-  out->SetGain(OUTPUT_GAIN_WORDS);
+  out = new AudioOutputI2S();  
 
   // Audio generator
   mp3 = new AudioGeneratorMP3();
 
   // Play init sound
+  out->SetGain(OUTPUT_GAIN_MUSIC);
   spiffs->open(INIT_SOUND);
   mp3->begin(spiffs, out);
 
@@ -263,6 +259,8 @@ void setup()
   
   delete spiffs; 
   spiffs = NULL;
+
+  out->SetGain(OUTPUT_GAIN_WORDS);
 }
 
 void loop()
