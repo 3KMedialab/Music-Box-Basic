@@ -12,8 +12,9 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "c:/Users/matuto/Documents/PlatformIO/Projects/Music Box/.pio/build/esp32doit-devkit-v1/firmware.elf",
-            "toolchainBinDir": "C:/Users/matuto/.platformio/packages/toolchain-xtensa32/bin",
+            "executable": "c:/Proyectos/Music-Box/.pio/build/esp32doit-devkit-v1/firmware.elf",
+            "projectEnvName": "esp32doit-devkit-v1",
+            "toolchainBinDir": "C:/Users/basta/.platformio/packages/toolchain-xtensa32/bin",
             "preLaunchTask": {
                 "type": "PlatformIO",
                 "task": "Pre-Debug"
@@ -24,8 +25,9 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "c:/Users/matuto/Documents/PlatformIO/Projects/Music Box/.pio/build/esp32doit-devkit-v1/firmware.elf",
-            "toolchainBinDir": "C:/Users/matuto/.platformio/packages/toolchain-xtensa32/bin",
+            "executable": "c:/Proyectos/Music-Box/.pio/build/esp32doit-devkit-v1/firmware.elf",
+            "projectEnvName": "esp32doit-devkit-v1",
+            "toolchainBinDir": "C:/Users/basta/.platformio/packages/toolchain-xtensa32/bin",
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
